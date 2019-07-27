@@ -1,0 +1,38 @@
+line
+====
+
+0.7.0
+-----
+
+* New session for every LineAPI instance #46
+
+0.6.8
+-----
+
+* Add profileImage to LineContact. solve #39
+
+0.6.7
+-----
+
+* KeyError error handling for __repr__ in LineMessage (thanks to @anusoft)
+
+0.6.6
+-----
+
+* LINE application version change from "3.x.x" to "5.x.x"
+
+0.6.5
+-----
+
+* longPoll exception error fixed (thanks to @nengoz and @punneng)
+
+0.6.0
+-----
+
+* sendImage() and sendImageWithURL() is fixed
+
+0.4.2
+-----
+
+* authToken expiration issue solved
+* updateAuthToken() added for manual update of authToken
