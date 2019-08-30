@@ -14,7 +14,7 @@ from sklearn.metrics import normalized_mutual_info_score as nmi
 import scipy.io as sio
 
 
-def cluster(data,true_labels,n_clusters=3):
+def cluster(data, true_labels, n_clusters=3):
 
 	km = KMeans(init='k-means++', n_clusters=n_clusters, n_init=10)
 	km.fit(data)
@@ -26,10 +26,10 @@ def cluster(data,true_labels,n_clusters=3):
 	colors_ = cycle(colors.cnames.keys())
 
 	initial_dim = np.shape(data)[1]
-	data_2 = tsne(data,2,initial_dim,30)
+	data_2 = tsne(data, 2, initial_dim, 30)
 
 	plt.figure(figsize=(12, 6))
-	plt.scatter(data_2[:,0],data_2[:,1], c=true_labels)
+	plt.scatter(data_2[:, 0], data_2[:, 1], c=true_labels)
 	plt.title('True Labels')
 
 	return km_means_labels
@@ -40,7 +40,7 @@ data_mat = data_mat['adjMat']
 labels = labels['wine_label']
 data_edge = nx.Graph(data_mat) 
 
-with open('wine.edgelist','wb') as f:
+with open('wine.edgelist', 'wb') as f:
 	nx.write_weighted_edgelist(data_edge, f)
 
 subprocess.call('~/DNGR-Keras/DNGR.py --graph_type '+'undirected'+' --input '+'wine.edgelist'+' --output '+'representation',shell=True)
@@ -52,7 +52,7 @@ reprsn = [np.asarray(row,dtype='float32') for row in reprsn]
 reprsn = np.array(reprsn, dtype='float32')
 true_labels = [labels[int(node)][0] for node in node_idx]
 true_labels = np.asarray(true_labels, dtype='int32')
-cluster(reprsn,true_labels, n_clusters=3)
+cluster(reprsn, true_labels, n_clusters=3)
 	
 plt.show()
 
